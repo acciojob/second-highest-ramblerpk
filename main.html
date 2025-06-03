@@ -9,9 +9,32 @@
 <body>	
 	<script>
 		function secondHighest(arr) {
-			//Write your code here
+    if (arr.length === 0 || arr.length === 1) {
+        return -Infinity;
+    }
+
+    let highest = -Infinity;
+    let secondHighest = -Infinity;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > highest) {
+            secondHighest = highest; // Update second highest
+            highest = arr[i]; // Update highest
+        } else if (arr[i] > secondHighest && arr[i] < highest) {
+            secondHighest = arr[i]; // Update second highest
+        }
+    }
+
+    // Check if secondHighest was updated
+    if (secondHighest === -Infinity) {
+        return -Infinity; // This means all elements were the same
+    }
+
+    return secondHighest;
+}
+				
 			
-		}
+		
 
 		function Main() {
 			var n = prompt("Enter the number of elements");
@@ -19,7 +42,7 @@
 			for (var i = 0; i < n; i++) {
 				arr[i] = prompt("Enter element " + (i+1));
 			}
-			alert(secondHighest(arr));
+			 alert(secondHighest(arr));
 		}
 		Main();
 	</script>
